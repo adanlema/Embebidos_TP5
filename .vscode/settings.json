@@ -1,8 +1,8 @@
 {
     "files.associations": {
-        "src/calculadora.h": "c",
-        "src/main.c": "c",
-        "src/calculadora.c": "c",
+        "calculadora.h": "c",
+        "main.c": "c",
+        "calculadora.c": "c",
         "string.h": "c"
     }
 }

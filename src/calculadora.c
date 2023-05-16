@@ -23,7 +23,7 @@ struct calculadora_s {
 /*==================[external data definition]===============================*/
 
 /*==================[internal functions definition]==========================*/
-operacion_pt BuscarOperacion(calculadora_pt AL, char operador) {
+static operacion_pt BuscarOperacion(calculadora_pt AL, char operador) {
     operacion_pt buscar = NULL;
     if (AL != NULL) {
         for (operacion_pt actual = AL->operaciones; actual->siguiente != NULL;
