@@ -3,6 +3,8 @@
         "calculadora.h": "c",
         "main.c": "c",
         "calculadora.c": "c",
-        "string.h": "c"
-    }
+        "string.h": "c",
+        "stdio.h": "c"
+    },
+    "cmake.configureOnOpen": false
 }
