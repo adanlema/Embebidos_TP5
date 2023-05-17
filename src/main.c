@@ -1,5 +1,6 @@
 /*==================[inclusions]=============================================*/
 #include "calculadora.h"
+#include <stdlib.h>
 #include <stdio.h>
 /*==================[macros and definitions]=================================*/
 
@@ -26,12 +27,15 @@ int producto(int a, int b) {
 
 /*==================[external functions definition]==========================*/
 int main(void) {
-    int            resultado;
-    calculadora_pt AL = CrearCalculadora();
+    int            resultado = 0;
+    calculadora_pt AL        = CrearCalculadora();
     AgregarOperacion(AL, '+', suma);
+    AgregarOperacion(AL, '-', resta);
+    AgregarOperacion(AL, '*', producto);
 
     resultado = CalcularOperacion(AL, "2+2");
     printf("El resultado es %i\n", resultado);
+
     return 0;
 }
 /** @ doxygen end group definition */

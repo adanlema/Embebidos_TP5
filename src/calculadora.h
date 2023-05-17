@@ -5,12 +5,10 @@
 #include <stdbool.h>
 
 /*==================[macros]=================================================*/
-#ifndef OPERACIONES
-#define OPERACIONES 10
-#endif
+
 /*==================[typedef]================================================*/
 typedef struct calculadora_s * calculadora_pt;
-typedef struct operacion_s * operacion_pt;
+typedef struct operacion_s *   operacion_pt;
 typedef int (*funcion_pt)(int, int);
 /*==================[external data declaration]==============================*/
 
