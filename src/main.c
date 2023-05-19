@@ -33,7 +33,11 @@ int main(void) {
     AgregarOperacion(AL, '-', resta);
     AgregarOperacion(AL, '*', producto);
 
-    resultado = CalcularOperacion(AL, "2+2");
+    resultado = CalcularOperacion(AL, "10+22");
+    printf("El resultado es %i\n", resultado);
+    resultado = CalcularOperacion(AL, "10*22");
+    printf("El resultado es %i\n", resultado);
+    resultado = CalcularOperacion(AL, "10-22");
     printf("El resultado es %i\n", resultado);
 
     return 0;

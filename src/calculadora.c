@@ -23,29 +23,23 @@ struct operacion_s {
 };
 
 struct calculadora_s {
-    operacion_pt operaciones;
+    struct operacion_s operaciones[OPERACIONES];
 };
 /*==================[internal functions declaration]=========================*/
 
 /*==================[internal data definition]===============================*/
 
 /*==================[external data definition]===============================*/
-static struct operacion_s op[OPERACIONES];
-static struct calculadora_s AL;
+
 /*==================[internal functions definition]==========================*/
 
 /*==================[external functions definition]==========================*/
 
 calculadora_pt CrearCalculadora(void) {
-    /*
-    calculadora_pt AL = malloc(sizeof(struct calculadora_s));
-    if (AL != NULL)
-        memset(AL, 0, sizeof(struct calculadora_s));
-    return AL;
-    */
-    AL.operaciones = op;
-    memset(&AL, 0, sizeof(struct calculadora_s));
-    return &AL;
+    calculadora_pt self = malloc(sizeof(struct calculadora_s));
+    if (self != NULL)
+        memset(self, 0, sizeof(struct calculadora_s));
+    return self;
 }
 
 operacion_pt BuscarOperacion(calculadora_pt self, char operador) {
@@ -66,8 +60,7 @@ operacion_pt BuscarOperacion(calculadora_pt self, char operador) {
     if (self != NULL) {
         for (int i = 0; i < OPERACIONES; i++) {
             if (self->operaciones[i].operador == operador) {
-                buscar->operador = self->operaciones[i].operador;
-                buscar->funcion  = self->operaciones[i].funcion;
+                buscar = &self->operaciones[i];
                 break;
             }
         }
@@ -86,19 +79,16 @@ bool AgregarOperacion(calculadora_pt self, char operador, funcion_pt funcion) {
     }
     return (operacion != NULL);
     */
-    operacion_pt agregar = BuscarOperacion(self, operador);
+    operacion_pt agregar = BuscarOperacion(self, 0);
     if (self != NULL) {
-        if ((operador != '\0') && (agregar == NULL)) {
-            for (int i = 0; i < OPERACIONES; i++) {
-                if (self->operaciones[i].operador == '\0') {
-                    self->operaciones[i].operador = operador;
-                    self->operaciones[i].funcion  = funcion;
-                    break;
-                }
-            }
+        if ((agregar) && !(BuscarOperacion(self, operador))) {
+            agregar->funcion  = funcion;
+            agregar->operador = operador;
         }
     }
+    return (agregar != NULL);
 }
+
 int CalcularOperacion(calculadora_pt self, char * cadena) {
     int  n1, n2;
     char operador;
@@ -109,6 +99,7 @@ int CalcularOperacion(calculadora_pt self, char * cadena) {
             operador = cadena[i];
             n1       = atoi(cadena);
             n2       = atoi(cadena + i + 1);
+            break;
         }
     }
     operacion_pt calcular = BuscarOperacion(self, operador);
