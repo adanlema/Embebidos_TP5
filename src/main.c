@@ -29,16 +29,17 @@ int producto(int a, int b) {
 int main(void) {
     int            resultado = 0;
     calculadora_pt AL        = CrearCalculadora();
-    AgregarOperacion(AL, '+', suma);
-    AgregarOperacion(AL, '-', resta);
-    AgregarOperacion(AL, '*', producto);
 
+    AgregarOperacion(AL, '+', suma);
     resultado = CalcularOperacion(AL, "10+22");
     printf("El resultado es %i\n", resultado);
-    resultado = CalcularOperacion(AL, "10*22");
-    printf("El resultado es %i\n", resultado);
-    resultado = CalcularOperacion(AL, "10-22");
-    printf("El resultado es %i\n", resultado);
+
+    // AgregarOperacion(AL, '-', resta);
+    // AgregarOperacion(AL, '*', producto);
+    //  resultado = CalcularOperacion(AL, "10*22");
+    //  printf("El resultado es %i\n", resultado);
+    //  resultado = CalcularOperacion(AL, "10-22");
+    //  printf("El resultado es %i\n", resultado);
 
     return 0;
 }

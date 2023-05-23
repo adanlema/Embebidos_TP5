@@ -1,19 +1,27 @@
 /*==================[inclusions]=============================================*/
+
 #include "calculadora.h"
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
 /*==================[macros and definitions]=================================*/
 
+#ifndef OPERACIONES
+#define OPERACIONES 10
+#endif
 /*==================[internal data declaration]==============================*/
 
+// Implementacion Estatica
+
+typedef struct operacion_s * operacion_pt;
+
 struct operacion_s {
-    char         operador;
-    funcion_pt   funcion;
-    operacion_pt anterior;
+    char       operador;
+    funcion_pt funcion;
 };
+
 struct calculadora_s {
-    operacion_pt operaciones;
+    struct operacion_s operaciones[OPERACIONES];
 };
 
 /*==================[internal functions declaration]=========================*/
@@ -36,9 +44,9 @@ calculadora_pt CrearCalculadora(void) {
 operacion_pt BuscarOperacion(calculadora_pt self, char operador) {
     operacion_pt buscar = NULL;
     if (self != NULL) {
-        for (operacion_pt actual = self->operaciones; actual != NULL; actual = actual->anterior) {
-            if (actual->operador == operador) {
-                buscar = actual;
+        for (int i = 0; i < OPERACIONES; i++) {
+            if (self->operaciones[i].operador == operador) {
+                buscar = &self->operaciones[i];
                 break;
             }
         }
@@ -47,16 +55,14 @@ operacion_pt BuscarOperacion(calculadora_pt self, char operador) {
 }
 
 bool AgregarOperacion(calculadora_pt self, char operador, funcion_pt funcion) {
-    operacion_pt operacion = malloc(sizeof(struct operacion_s));
-    if (!(BuscarOperacion(self, operador))) {
-        if ((operacion)) {
-            self->operaciones->funcion  = funcion;
-            self->operaciones->operador = operador;
-            operacion->anterior         = self->operaciones;
-            self->operaciones           = operacion;
+    operacion_pt agregar = BuscarOperacion(self, 0);
+    if (self != NULL) {
+        if ((agregar) && !(BuscarOperacion(self, operador))) {
+            agregar->funcion  = funcion;
+            agregar->operador = operador;
         }
     }
-    return (operacion != NULL);
+    return (agregar != NULL);
 }
 
 int CalcularOperacion(calculadora_pt self, char * cadena) {

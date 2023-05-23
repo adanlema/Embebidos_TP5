@@ -7,8 +7,8 @@
 /*==================[macros]=================================================*/
 
 /*==================[typedef]================================================*/
-typedef struct calculadora_s * calculadora_pt;
 typedef struct operacion_s *   operacion_pt;
+typedef struct calculadora_s * calculadora_pt;
 typedef int (*funcion_pt)(int, int);
 /*==================[external data declaration]==============================*/
 
