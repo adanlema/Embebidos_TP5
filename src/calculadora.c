@@ -1,3 +1,5 @@
+/* Copyright 2023, Adan Lema <adanlema@hotmail.com> */
+
 /*==================[inclusions]=============================================*/
 #include "calculadora.h"
 #include <stdlib.h>
@@ -6,11 +8,28 @@
 /*==================[macros and definitions]=================================*/
 
 /*==================[internal data declaration]==============================*/
+/**
+ * @brief Estructura de una operacion.
+ *  Espacio de memoria de una operacion, contiene su operador, la funcion asociada y un puntero a la
+ * operacion anterior agregada.
+ *
+ * @param operador  Operador de la operacion.
+ * @param funcion   Funcion asociada al operador.
+ * @param anterior  Puntero a la operacion anterior agregada.
+ */
 struct operacion_s {
     char         operador;
     funcion_pt   funcion;
     operacion_pt anterior;
 };
+
+/**
+ * @brief Estructura de la calculadora.
+ *  Es una estructura que contiene un puntero a la ultima operacion agregada. Cuando se crea la
+ * calculadora esta no contiene ninguna operacion.
+ *
+ * @param operaciones Puntero a la ultima operacion agregada.
+ */
 struct calculadora_s {
     operacion_pt operaciones;
 };
@@ -35,7 +54,6 @@ static operacion_pt BuscarOperacion(calculadora_pt self, char operador) {
     }
     return buscar;
 }
-/* Copyright 2023, Adan Lema <adanlema@hotmail.com> */
 
 /*==================[external functions definition]==========================*/
 

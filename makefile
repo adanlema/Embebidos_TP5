@@ -1,5 +1,6 @@
 SRC_DIR = ./src
 OUT_DIR = ./build
+DOC_DIR = $(OUT_DIR)/doc
 OBJ_DIR = $(OUT_DIR)/obj
 BIN_DIR = $(OUT_DIR)/bin
 
@@ -16,6 +17,8 @@ $(OBJ_DIR) : $(OUT_DIR)
 	mkdir $(OBJ_DIR)
 $(BIN_DIR) : $(OUT_DIR)
 	mkdir $(BIN_DIR)
+$(DOC_DIR) : $(OUT_DIR)
+	mkdir $(DOC_DIR)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(OBJ_DIR)
 	gcc -c $< -o $@
@@ -25,3 +28,6 @@ all: $(OBJ_FILES) $(BIN_DIR)
 
 clean: $(OUT_DIR)
 	rm -r $(OUT_DIR)
+
+doc: $(DOC_DIR)
+	doxygen doxyfile
