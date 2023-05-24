@@ -1,3 +1,5 @@
+/* Copyright 2023, Adan Lema <adanlema@hotmail.com> */
+
 /*==================[inclusions]=============================================*/
 #include "calculadora.h"
 #include <stdlib.h>
@@ -34,12 +36,13 @@ int main(void) {
     resultado = CalcularOperacion(AL, "10+22");
     printf("El resultado es %i\n", resultado);
 
-    // AgregarOperacion(AL, '-', resta);
-    // AgregarOperacion(AL, '*', producto);
-    //  resultado = CalcularOperacion(AL, "10*22");
-    //  printf("El resultado es %i\n", resultado);
-    //  resultado = CalcularOperacion(AL, "10-22");
-    //  printf("El resultado es %i\n", resultado);
+    AgregarOperacion(AL, '-', resta);
+    resultado = CalcularOperacion(AL, "10-22");
+    printf("El resultado es %i\n", resultado);
+
+    AgregarOperacion(AL, '*', producto);
+    resultado = CalcularOperacion(AL, "10*22");
+    printf("El resultado es %i\n", resultado);
 
     return 0;
 }

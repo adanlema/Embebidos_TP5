@@ -1,3 +1,5 @@
+/* Copyright 2023, Adan Lema <adanlema@hotmail.com> */
+
 #ifndef CALCULADORA_H
 #define CALCULADORA_H
 

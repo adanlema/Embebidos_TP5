@@ -6,7 +6,6 @@
 /*==================[macros and definitions]=================================*/
 
 /*==================[internal data declaration]==============================*/
-
 struct operacion_s {
     char         operador;
     funcion_pt   funcion;
@@ -17,23 +16,14 @@ struct calculadora_s {
 };
 
 /*==================[internal functions declaration]=========================*/
-
+static operacion_pt BuscarOperacion(calculadora_pt self, char operador);
 /*==================[internal data definition]===============================*/
 
 /*==================[external data definition]===============================*/
 
 /*==================[internal functions definition]==========================*/
 
-/*==================[external functions definition]==========================*/
-
-calculadora_pt CrearCalculadora(void) {
-    calculadora_pt self = malloc(sizeof(struct calculadora_s));
-    if (self != NULL)
-        memset(self, 0, sizeof(struct calculadora_s));
-    return self;
-}
-
-operacion_pt BuscarOperacion(calculadora_pt self, char operador) {
+static operacion_pt BuscarOperacion(calculadora_pt self, char operador) {
     operacion_pt buscar = NULL;
     if (self != NULL) {
         for (operacion_pt actual = self->operaciones; actual != NULL; actual = actual->anterior) {
@@ -45,15 +35,25 @@ operacion_pt BuscarOperacion(calculadora_pt self, char operador) {
     }
     return buscar;
 }
+/* Copyright 2023, Adan Lema <adanlema@hotmail.com> */
+
+/*==================[external functions definition]==========================*/
+
+calculadora_pt CrearCalculadora(void) {
+    calculadora_pt self = malloc(sizeof(struct calculadora_s));
+    if (self != NULL)
+        memset(self, 0, sizeof(struct calculadora_s));
+    return self;
+}
 
 bool AgregarOperacion(calculadora_pt self, char operador, funcion_pt funcion) {
     operacion_pt operacion = malloc(sizeof(struct operacion_s));
     if (!(BuscarOperacion(self, operador))) {
         if ((operacion)) {
-            self->operaciones->funcion  = funcion;
-            self->operaciones->operador = operador;
-            operacion->anterior         = self->operaciones;
-            self->operaciones           = operacion;
+            operacion->funcion  = funcion;
+            operacion->operador = operador;
+            operacion->anterior = self->operaciones;
+            self->operaciones   = operacion;
         }
     }
     return (operacion != NULL);
