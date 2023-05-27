@@ -12,6 +12,7 @@
 static int suma(int a, int b);
 static int resta(int a, int b);
 static int producto(int a, int b);
+static int division(int a, int b);
 /*==================[internal data definition]===============================*/
 
 /*==================[external data definition]===============================*/
@@ -25,6 +26,9 @@ static int resta(int a, int b) {
 }
 static int producto(int a, int b) {
     return (a * b);
+}
+static int division(int a, int b) {
+    return (a / b);
 }
 
 /*==================[external functions definition]==========================*/
@@ -42,6 +46,10 @@ int main(void) {
 
     AgregarOperacion(AL, '*', producto);
     resultado = CalcularOperacion(AL, "10*22");
+    printf("El resultado es %i\n", resultado);
+
+    AgregarOperacion(AL, '/', division);
+    resultado = CalcularOperacion(AL, "22/10");
     printf("El resultado es %i\n", resultado);
 
     return 0;
